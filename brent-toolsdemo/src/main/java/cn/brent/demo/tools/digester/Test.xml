@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<models>
+	<version>2.3.2</version>
+	<model>
+		<name>ewrwe</name>
+		<age>8</age>
+		<lon>342</lon>
+		<biger>344.9</biger>
+	</model>
+	<model name="吕文" age="32" lon="234" biger="23.5"/>
+</models>

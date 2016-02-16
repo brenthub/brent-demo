@@ -5,7 +5,7 @@ import org.ini4j.Ini;
 public class Ini4JDemo {
 
 	public static void main(String[] args) throws Exception {
-		Ini i=new Ini(Ini4JDemo.class.getResourceAsStream("/ini4j/demo.ini"));
+		Ini i=new Ini(Ini4JDemo.class.getResourceAsStream("demo.ini"));
 		String a=i.get("system", "system.a");
 		System.out.println(a);
 		
