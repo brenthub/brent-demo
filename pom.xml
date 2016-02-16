@@ -70,5 +70,7 @@
 
 	<modules>
 		<module>brent-jfinal-ftl</module>
+		<module>brent-pattern</module>
+		<module>brent-toolsdemo</module>
 	</modules>
 </project>
