@@ -72,5 +72,6 @@
 		<module>brent-jfinal-ftl</module>
 		<module>brent-pattern</module>
 		<module>brent-toolsdemo</module>
+		<module>brent-bootdemo</module>
 	</modules>
 </project>
