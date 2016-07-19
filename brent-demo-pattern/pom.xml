@@ -5,5 +5,5 @@
     <artifactId>brent-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>brent-pattern</artifactId>
+  <artifactId>brent-demo-pattern</artifactId>
 </project>

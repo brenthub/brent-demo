@@ -6,7 +6,7 @@
 		<artifactId>brent-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>brent-toolsdemo</artifactId>
+	<artifactId>brent-demo-tools</artifactId>
 
 	<dependencies>
 		<dependency>

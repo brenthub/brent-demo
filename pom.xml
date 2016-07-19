@@ -69,9 +69,9 @@
 	</licenses>
 
 	<modules>
-		<module>brent-jfinal-ftl</module>
-		<module>brent-pattern</module>
-		<module>brent-toolsdemo</module>
-		<module>brent-bootdemo</module>
+		<module>brent-demo-jfinal-ftl</module>
+		<module>brent-demo-pattern</module>
+		<module>brent-demo-tools</module>
+		<module>brent-demo-springboot</module>
 	</modules>
 </project>

@@ -6,13 +6,13 @@
 		<artifactId>brent-demo</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>brent-jfinal-ftl</artifactId>
+	<artifactId>brent-demo-jfinal-ftl</artifactId>
 	<packaging>war</packaging>
 	<dependencies>
 		<dependency>
 			<groupId>cn.brent</groupId>
 			<artifactId>brent-jfinal-ext</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
