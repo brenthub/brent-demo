@@ -12,10 +12,6 @@ import cn.brent.demo.mybatis.model.User;
 public class UserServiceImpl implements IUserService{
 
 	private UserMapper userMapper;
-		
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
 
 	@Autowired
 	public void setUserMapper(UserMapper userMapper) {
