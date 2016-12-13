@@ -31,14 +31,14 @@ public class TestMybatis {
 		this.muserService = muserService;
 	}
 	
-	@Test
+//	@Test
 	public void test1() {
 		
 		List<User> list = muserService.getAll();
 		logger.info(JSON.toJSONStringWithDateFormat(list, "yyyy-MM-dd HH:mm:ss"));
 	}
 	
-	//@Test
+//	@Test
 	public void test2() {
 	
 		User muser = new User();
@@ -50,7 +50,7 @@ public class TestMybatis {
 		logger.info(JSON.toJSONStringWithDateFormat("add "+i, "yyyy-MM-dd HH:mm:ss"));
 	}
 	
-	//@Test
+//	@Test
 	public void test3() {
 		
 		User muser = new User();
@@ -62,7 +62,7 @@ public class TestMybatis {
 		logger.info(JSON.toJSONStringWithDateFormat("update " +i, "yyyy-MM-dd HH:mm:ss"));
 	}
 	
-	//@Test
+	@Test
 	public void test4() {
 		
 		User muser = new User();

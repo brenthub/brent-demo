@@ -11,43 +11,42 @@
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	">
 
-	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="url" value="${jdbc_url}" />
+	<!-- Hikari Datasource -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="shutdown">
+		<!-- <property name="driverClassName" value="${db.driverClass}" /> -->
+		<!-- 无需指定，除非系统无法自动识别 -->
+		<property name="jdbcUrl" value="${jdbc_url}" />
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
-	
-		<property name="initialSize" value="0" />		
-		<property name="maxActive" value="20" />	
-		<property name="maxIdle" value="20" />
-		<property name="minIdle" value="0" />		
-		<property name="maxWait" value="60000" />
-		
-		<property name="validationQuery" value="${validationQuery}" />
-		<property name="testOnBorrow" value="false" />
-		<property name="testOnReturn" value="false" />
-		<property name="testWhileIdle" value="true" />
-		<property name="timeBetweenEvictionRunsMillis" value="60000" />
-		<property name="minEvictableIdleTimeMillis" value="25200000" />
-		<property name="removeAbandoned" value="true" />
-		<property name="removeAbandonedTimeout" value="1800" />
-		<property name="logAbandoned" value="true" />
-		<property name="filters" value="mergeStat" />
+		<!-- 连接只读数据库时配置为true， 保证安全 -->
+		<property name="readOnly" value="false" />
+		<!-- 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒 -->
+		<property name="connectionTimeout" value="30000" />
+		<!-- 一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟 -->
+		<property name="idleTimeout" value="600000" />
+		<!-- 一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒，参考MySQL 
+			wait_timeout参数（show variables like '%timeout%';） -->
+		<property name="maxLifetime" value="1800000" />
+		<!-- 连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count) -->
+		<property name="maximumPoolSize" value="15" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:cn/brent/demo/mybatis/*.xml" />
+		<property name="mapperLocations" value="classpath:cn/brent/demo/mybatis/mapping/*.xml" />
 	</bean>
-	
+
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="cn.brent.demo.mybatis.dal" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
@@ -71,10 +70,12 @@
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	
+
 	<aop:config>
-		<aop:pointcut id="transactionPointcut" expression="execution(* cn.brent.demo.mybatis.service..*(..))" />
-		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+		<aop:pointcut id="transactionPointcut"
+			expression="execution(* cn.brent.demo.mybatis.service..*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+			advice-ref="transactionAdvice" />
 	</aop:config>
 
 </beans>
