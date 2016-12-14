@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.brent.demo.mybatis.dal.UserMapper" >
 
-  <resultMap id="BaseResultMap" type="cn.brent.demo.mybatis.model.User" >
+  <resultMap id="BaseResultMap" type="User" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="AGE" property="age" jdbcType="DECIMAL" />
@@ -12,6 +12,7 @@
   <sql id="Base_Column_List" >
     ID, NAME, AGE, ADDRESS
   </sql>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
@@ -22,7 +23,7 @@
     delete from MUSER
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="cn.brent.demo.mybatis.model.User" >
+  <insert id="insert" parameterType="User" >
     insert into MUSER (ID, NAME, AGE, 
       ADDRESS)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, 
@@ -59,7 +60,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.brent.demo.mybatis.model.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="User" >
     update MUSER
     <set >
       <if test="name != null" >
@@ -74,7 +75,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.brent.demo.mybatis.model.User" >
+  <update id="updateByPrimaryKey" parameterType="User" >
     update MUSER
     set NAME = #{name,jdbcType=VARCHAR},
       AGE = #{age,jdbcType=DECIMAL},
@@ -82,7 +83,12 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   
-  <select id="getAll" resultMap="BaseResultMap">
+  <!-- <select id="getAll" resultMap="BaseResultMap" >
 	select ID, NAME, AGE, ADDRESS from MUSER
+  </select> -->
+  
+  <select id="getAllForMap"  resultType="map">
+	select a.`name`,b.`name` from MUSER a,MUSER b where a.id=b.id
   </select>
+  
 </mapper>

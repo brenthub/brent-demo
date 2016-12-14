@@ -1,6 +1,7 @@
 package cn.brent.demo.mybatis.dal;
 
 import java.util.List;
+import java.util.Map;
 
 import cn.brent.demo.mybatis.model.User;
 
@@ -19,4 +20,6 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
     
     List<User> getAll();
+    
+    List<Map> getAllForMap();
 }
