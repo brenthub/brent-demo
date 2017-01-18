@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>   
+    <group id="jdbc">   
+        <property name="jdbc.url" /> 
+        <property name="jdbc.user" /> 
+        <property name="jdbc.pwd" /> 
+    </group>
+    
+    <group id="logger">
+    	<property name="logger.root"/>
+    </group>
+   
+    <script>
+        <generate template="WEB-INF/classes/start.config" />   
+        <generate template="WEB-INF/classes/logger.properties" />
+    </script>   
+</config> 

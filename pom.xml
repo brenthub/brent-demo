@@ -60,7 +60,7 @@
 		</plugins>
 	</build>
 
-	<!--许可�?-->
+	<!--许可�?-->
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -74,5 +74,7 @@
 		<module>brent-demo-tools</module>
 		<module>brent-demo-springboot</module>
     <module>brent-demo-mybatis</module>
-  </modules>
+    <module>brent-demo-autoconfig</module>
+    <module>brent-demo-autoconfig-web</module>
+	</modules>
 </project>
