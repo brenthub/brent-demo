@@ -51,7 +51,7 @@
 				<artifactId>autoconfig-maven-plugin</artifactId>
 				<version>1.2</version>
 				<configuration>
-					<userProperties>${basedir}/profiles/dev/env.properties</userProperties>
+					<userProperties>${basedir}/src/main/resources/env.properties</userProperties>
 				</configuration>
 				<executions>
 					<execution>

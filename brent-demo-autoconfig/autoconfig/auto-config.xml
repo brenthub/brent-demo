@@ -11,7 +11,7 @@
     </group>
    
     <script>   
-        <generate template="start.config" />   
-        <generate template="logger.properties" />
+        <generate template="conf/start.config" />   
+        <generate template="conf/logger.properties" />
     </script>   
 </config> 

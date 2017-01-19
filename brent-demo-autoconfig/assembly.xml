@@ -17,7 +17,7 @@
 			<directory>${basedir}/src/main/resources</directory>
 		</fileSet>
 		<fileSet>
-			<outputDirectory>conf</outputDirectory>
+			<outputDirectory>META-INF/autoconfig</outputDirectory>
 			<directory>${basedir}/autoconfig</directory>
 		</fileSet>
 	</fileSets>
