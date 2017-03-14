@@ -10,3 +10,5 @@
 + junit
 + ini4j
 + hamcrest
++ snakeyaml
++ bouncycastle

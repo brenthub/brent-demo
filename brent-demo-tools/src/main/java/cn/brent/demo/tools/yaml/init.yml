@@ -1,0 +1,111 @@
+---
+app_info:
+  app_id: 100
+  app_name: trans-group
+  app_key: 8214ddcc7725ef09
+  cluster_id_start: 100
+  group_id_start: 200
+  split_key_start: 300
+  
+
+cluster_groups:
+  -
+    cluster_name: trans-group
+    global:
+      group_name: trans
+      ip: 192.168.1.10
+      port: 3306
+      db_name: cds
+      user_name: cds
+      passwd: cds123456
+      
+    work:
+      total: 14
+      ip_prefix: 192.168.10.
+      ip_start: 2
+      
+    isolate_tables:
+      - t_r_recon_task_log
+      - t_r_recon_package_task
+      
+    
+    split_keys:
+      - 
+        split_name: transId
+        class: com.epcc.cds.helper.splitkey.DateSplitKeyGenerate
+        tables:
+          -
+            name: t_p_cancel_sign_log
+            column: trans_id
+          -
+            name: t_p_sign_log
+            column: trans_id
+          -
+            name: t_p_trans   
+            column: trans_id
+          -
+            name: t_p_trans_bank_result
+            column: trans_id
+          -
+            name: t_p_trans_detail
+            column: trans_id
+  -
+    cluster_name: trans-repair-group-master
+    global:
+      group_name: trans
+      ip: 192.168.2.10
+      port: 3306
+      db_name: cds
+      user_name: cds
+      passwd: cds123456
+      
+    work:
+      total: 14
+      ip_prefix: 192.168.2.
+      ip_start: 2
+    
+    split_keys:
+      - 
+        split_name: transId
+        class: com.epcc.cds.helper.splitkey.DateSplitKeyGenerate
+        tables:
+          -
+            name: t_p_trans   
+            column: trans_id
+      - 
+        split_name: dbName
+        class: com.epcc.cds.helper.splitkey.DbNameSplitKeyGenerate
+        tables:
+          -
+            name: t_p_repair_plan   
+            column: db_name
+  -
+    cluster_name: trans-repair-group-slave
+    global:
+      group_name: trans
+      ip: 192.168.3.10
+      port: 3306
+      db_name: cds
+      user_name: cds
+      passwd: cds123456
+      
+    work:
+      total: 14
+      ip_prefix: 192.168.3.
+      ip_start: 2
+    
+    split_keys:
+      - 
+        split_name: transId
+        class: com.epcc.cds.helper.splitkey.DateSplitKeyGenerate
+        tables:
+          -
+            name: t_p_trans   
+            column: trans_id
+      - 
+        split_name: dbName
+        class: com.epcc.cds.helper.splitkey.DbNameSplitKeyGenerate
+        tables:
+          -
+            name: t_p_repair_plan   
+            column: db_name
