@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cn.brent</groupId>
 	<artifactId>brent-demo</artifactId>
@@ -41,6 +42,7 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -60,7 +62,7 @@
 		</plugins>
 	</build>
 
-	<!--许可�?-->
+	<!--许可�? -->
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -73,8 +75,9 @@
 		<module>brent-demo-pattern</module>
 		<module>brent-demo-tools</module>
 		<module>brent-demo-springboot</module>
-    <module>brent-demo-mybatis</module>
-    <module>brent-demo-autoconfig</module>
-    <module>brent-demo-autoconfig-web</module>
+		<module>brent-demo-mybatis</module>
+		<module>brent-demo-autoconfig</module>
+		<module>brent-demo-autoconfig-web</module>
+		<module>brent-demo-dubbo</module>
 	</modules>
 </project>

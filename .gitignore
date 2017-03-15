@@ -12,14 +12,14 @@
 hs_err_pid*
 
 /.classpath
-*/.classpath
+**/.classpath
 
-*/.settings/
+**/.settings/
 /.settings/
 
-*/.project
+**/.project
 .project
 
-*/target
+**/target
 
-*/*.log
+**/*.log
