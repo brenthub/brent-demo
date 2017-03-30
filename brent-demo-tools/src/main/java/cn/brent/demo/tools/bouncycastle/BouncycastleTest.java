@@ -1,7 +1,5 @@
 package cn.brent.demo.tools.bouncycastle;
 
-import org.bouncycastle.jcajce.provider.asymmetric.RSA;
-import org.bouncycastle.jcajce.provider.symmetric.AES;
 import org.bouncycastle.util.encoders.Base64;
 import org.bouncycastle.util.encoders.Hex;
 import org.junit.Test;
@@ -22,6 +20,6 @@ public class BouncycastleTest {
 	
 	@Test
 	public void testAES(){
-//		System.out.println(str);
+		
 	}
 }

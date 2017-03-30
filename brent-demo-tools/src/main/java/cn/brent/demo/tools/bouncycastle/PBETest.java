@@ -13,10 +13,22 @@ import org.junit.Test;
 
 public class PBETest {
 	
-	private static int jdField_int = 1000;
-	private static String jdField_goto = "salt";
-	private static String jdField_try = "##Brent demo Co.,Ltd##^2003^";
-	private static String PBE = "PBEWithSHAAndTwofish-CBC";
+	/**
+	 * 迭代次数
+	 */
+	private static int ITERATION_COUNT = 1000;
+	/**
+	 * 盐
+	 */
+	private static String SALT_STRING = "salt";
+	/**
+	 * 密码前缀
+	 */
+	private static String PWD_PREFIX = "##Brent demo Co.,Ltd##^2003^";
+	/**
+	 * 算法
+	 */
+	private static String ALGORITHM = "PBEWithSHAAndTwofish-CBC";
 
 	@Test
 	public void test() throws Exception {
@@ -39,23 +51,23 @@ public class PBETest {
 	}
 
 	private static byte[] encrypt(byte[] bytes, String data) throws Exception {
-		byte[] salt = Base64.decode(jdField_goto);
-		PBEParameterSpec pram = new PBEParameterSpec(salt, jdField_int);
-		char[] array = (jdField_try + data).toCharArray();
+		byte[] salt = Base64.decode(SALT_STRING);
+		PBEParameterSpec pram = new PBEParameterSpec(salt, ITERATION_COUNT);
+		char[] array = (PWD_PREFIX + data).toCharArray();
 		PBEKeySpec key = new PBEKeySpec(array);
-		SecretKey secreKey = SecretKeyFactory.getInstance(PBE).generateSecret(key);
-		Cipher cipher = Cipher.getInstance(PBE);
+		SecretKey secreKey = SecretKeyFactory.getInstance(ALGORITHM).generateSecret(key);
+		Cipher cipher = Cipher.getInstance(ALGORITHM);
 		cipher.init(Cipher.ENCRYPT_MODE, secreKey, pram);
 		return cipher.doFinal(bytes);
 	}
 
 	private static byte[] decrypt(byte[] bytes, String data) throws Exception {
-		byte[] salt = Base64.decode(jdField_goto);
-		PBEParameterSpec pram = new PBEParameterSpec(salt, jdField_int);
-		char[] array = (jdField_try + data).toCharArray();
+		byte[] salt = Base64.decode(SALT_STRING);
+		PBEParameterSpec pram = new PBEParameterSpec(salt, ITERATION_COUNT);
+		char[] array = (PWD_PREFIX + data).toCharArray();
 		PBEKeySpec key = new PBEKeySpec(array);
-		SecretKey secreKey = SecretKeyFactory.getInstance(PBE).generateSecret(key);
-		Cipher cipher = Cipher.getInstance(PBE);
+		SecretKey secreKey = SecretKeyFactory.getInstance(ALGORITHM).generateSecret(key);
+		Cipher cipher = Cipher.getInstance(ALGORITHM);
 		cipher.init(Cipher.DECRYPT_MODE, secreKey, pram);
 		return cipher.doFinal(bytes);
 	}
