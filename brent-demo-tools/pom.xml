@@ -49,5 +49,10 @@
 			<artifactId>bcprov-jdk15on</artifactId>
 			<version>1.56</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>1.87</version>
+		</dependency>
 	</dependencies>
 </project>
