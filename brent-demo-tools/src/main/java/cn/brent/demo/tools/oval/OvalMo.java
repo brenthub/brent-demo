@@ -1,10 +1,13 @@
 package cn.brent.demo.tools.oval;
 
 import net.sf.oval.constraint.CheckWith;
+import net.sf.oval.constraint.NotEmpty;
 
 public class OvalMo {
 
 	private String id;
+	
+	@NotEmpty
 	private String name;
 	@CheckWith(value = InfoCheck.class)
 	private String info;
