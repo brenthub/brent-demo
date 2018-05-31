@@ -192,5 +192,45 @@ public class LockTest {
 			}
 		}
 	}
+	
+	@Test
+	public void reentrantLockTest4() {
+		final ExecutorService exec = Executors.newFixedThreadPool(20);
+
+		final Runnable wait = new Runnable() {
+			public void run() {
+				lock.lock();
+				lock.lock();
+				try {
+					//this.getClass().wait();
+					System.out.println("end");
+				}  finally {
+					lock.unlock();
+//					lock.unlock();
+				}
+
+			}
+		};
+		final Runnable getlock = new Runnable() {
+			public void run() {
+				lock.lock();
+				try {
+					System.out.println("notify end");
+				} finally {
+					lock.unlock();
+				}
+			}
+		};
+		exec.submit(wait);
+		exec.submit(getlock);
+		synchronized (getClass()) {
+			try {
+				getClass().wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 
 }
