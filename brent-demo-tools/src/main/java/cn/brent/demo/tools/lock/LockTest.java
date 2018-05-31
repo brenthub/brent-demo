@@ -156,13 +156,14 @@ public class LockTest {
 
 	@Test
 	public void reentrantLockTest3() {
-		final ExecutorService exec = Executors.newFixedThreadPool(20);
-
+		
 		final Runnable wait = new Runnable() {
 			public void run() {
 				lock.lock();
 				try {
-					this.getClass().wait();
+					synchronized (Thread.currentThread()) {
+						Thread.currentThread().wait();
+					}
 					System.out.println("end");
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -174,6 +175,7 @@ public class LockTest {
 		};
 		final Runnable getlock = new Runnable() {
 			public void run() {
+				System.out.println("getlock");
 				lock.lock();
 				try {
 					System.out.println("notify end");
@@ -182,8 +184,55 @@ public class LockTest {
 				}
 			}
 		};
-		exec.submit(wait);
-		exec.submit(getlock);
+		new Thread(wait).start();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		new Thread(getlock).start();
+		synchronized (getClass()) {
+			try {
+				getClass().wait();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@Test
+	public void objLockTest() {
+		
+		Object obj=new Object();
+		final Runnable wait = new Runnable() {
+			public void run() {
+				
+				synchronized (obj) {
+					try {
+						obj.wait();
+						Thread.sleep(10000000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				System.out.println("end");
+
+			}
+		};
+		final Runnable getlock = new Runnable() {
+			public void run() {
+				synchronized (obj) {
+					System.out.println("notify end");
+				}
+			}
+		};
+		new Thread(wait).start();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			e1.printStackTrace();
+		}
+		new Thread(getlock).start();
 		synchronized (getClass()) {
 			try {
 				getClass().wait();
